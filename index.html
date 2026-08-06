@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mir Sameen Hasnat — EE Portfolio</title>
+<meta name="description" content="Electrical Engineering student portfolio — embedded systems, power electronics, robotics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="board">
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">MSH<span class="dot">•</span></a>
+      <div class="nav-links">
+        <a href="#projects">01 / PROJECTS</a>
+        <a href="#experience">02 / EXPERIENCE</a>
+        <a href="#skills">03 / SPEC</a>
+        <a href="#contact">04 / CONTACT</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== TRACE (signature element — runs the full page) ===== -->
+  <svg class="trace-line" width="2" height="100%" preserveAspectRatio="none">
+    <line x1="1" y1="0" x2="1" y2="100%" />
+  </svg>
+
+  <!-- ===== HERO ===== -->
+  <header id="top" class="hero">
+    <div class="hero-inner">
+      <div class="term-tag">/// BOOT_SEQUENCE</div>
+      <pre class="term" id="term"></pre>
+
+      <h1 class="hero-title">MIR SAMEEN<br>HASNAT</h1>
+      <p class="hero-role">Electrical Engineering — UBC &nbsp;·&nbsp; Vancouver, BC</p>
+      <p class="hero-desc">
+        I design and build embedded systems and power electronics — from motor-controlled
+        robots to self-designed biosensor hardware. This is a working log of what I've built,
+        how it works, and what I learned getting it there.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:hasnatsameen@gmail.com" class="pin">EMAIL</a>
+        <a href="#" class="pin" target="_blank" rel="noopener">LINKEDIN</a>
+        <a href="#" class="pin" target="_blank" rel="noopener">GITHUB</a>
+        <a href="assets/Sameen_CV.pdf" class="pin pin-fill" target="_blank">RESUME ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section">
+    <div class="section-head">
+      <span class="node"></span>
+      <h2><span class="idx">01</span> Projects</h2>
+      <p class="section-sub">Selected builds — hardware, firmware, and everything in between</p>
+    </div>
+
+    <div class="modules">
+
+      <!-- Bladder Buddy -->
+      <article class="module module-featured">
+        <div class="module-media">
+          <img src="assets/img/bladder-buddy.jpg" alt="Bladder Buddy device" onerror="this.parentElement.classList.add('media-empty')">
+          <span class="media-label">IMG // replace: assets/img/bladder-buddy.jpg</span>
+        </div>
+        <div class="module-body">
+          <div class="module-top">
+            <h3>Bladder Buddy</h3>
+            <span class="badge">Special Recognition — UBC Design Team Comp. 2026</span>
+          </div>
+          <p class="module-desc">
+            A self-designed public urinal sensor that monitors protein and pH content in real
+            time to flag early health indicators — cutting pre-screening wait times from
+            2–3 business days down to 2 minutes.
+          </p>
+          <ul class="module-points">
+            <li>Built custom protein &amp; pH sensing stage using a GUVA UV sensor and pH probe</li>
+            <li>Designed signal conditioning circuit and validated it in LTspice before hardware bring-up</li>
+            <li>Automated sample handling with disc motors and closed-loop control on ESP32</li>
+          </ul>
+          <div class="module-stack">
+            <span>C++</span><span>E-CAD</span><span>LTspice</span><span>ESP32</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Feetball -->
+      <article class="module">
+        <div class="module-media">
+          <img src="assets/img/feetball.jpg" alt="Feetball robot" onerror="this.parentElement.classList.add('media-empty')">
+          <span class="media-label">IMG // replace: assets/img/feetball.jpg</span>
+        </div>
+        <div class="module-body">
+          <div class="module-top">
+            <h3>Feetball</h3>
+          </div>
+          <p class="module-desc">
+            A Bluetooth-controlled robot that dribbles a soccer ball and navigates a playing
+            field, using electromagnetic solenoids to generate a "kicking" action.
+          </p>
+          <ul class="module-points">
+            <li>Designed solenoid drive circuit with buck-converter-based power management</li>
+            <li>Implemented Bluetooth motion control and kick-timing logic on ESP32</li>
+          </ul>
+          <div class="module-stack">
+            <span>C++</span><span>LTspice</span><span>ESP32</span><span>CAD</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- UBC Agrobots -->
+      <article class="module">
+        <div class="module-media">
+          <img src="assets/img/agrobots.jpg" alt="UBC Agrobots" onerror="this.parentElement.classList.add('media-empty')">
+          <span class="media-label">IMG // replace: assets/img/agrobots.jpg</span>
+        </div>
+        <div class="module-body">
+          <div class="module-top">
+            <h3>UBC Agrobots — Power System</h3>
+            <span class="badge badge-muted">Ongoing — Jan 2026 / present</span>
+          </div>
+          <p class="module-desc">
+            Electrical team member on UBC's flagship agricultural robot, responsible for the
+            power distribution system feeding a mix of components off a single 48V source.
+          </p>
+          <ul class="module-points">
+            <li>Designed power distribution using buck converters and bus bars across variable-load components</li>
+            <li>Integrated NVIDIA Jetson Orin for AI-controlled automation alongside ESP32 motor control</li>
+            <li>Documented subsystem interfaces to coordinate with sub-teams</li>
+          </ul>
+          <div class="module-stack">
+            <span>48V Power Systems</span><span>ESP32</span><span>Jetson Orin</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mars 2.0 -->
+      <article class="module module-compact">
+        <div class="module-body">
+          <div class="module-top">
+            <h3>Mars 2.0</h3>
+            <span class="badge badge-muted">MLIS Science Fair — 1st Place</span>
+          </div>
+          <p class="module-desc">
+            Earthquake-response rover concept with motion/obstacle detection, a servo-controlled
+            surveillance camera, and Bluetooth override up to 1.5 km.
+          </p>
+          <div class="module-stack">
+            <span>Arduino</span><span>C++</span><span>CAD</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" class="section">
+    <div class="section-head">
+      <span class="node"></span>
+      <h2><span class="idx">02</span> Experience</h2>
+      <p class="section-sub">Where I've worked and what I did there</p>
+    </div>
+
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-when">JUN 2026 —<br>PRESENT</div>
+        <div class="t-node"></div>
+        <div class="t-body">
+          <h4>Production Worker <span>· Floform Industries</span></h4>
+          <ul>
+            <li>Create CAD designs of countertops to client and retailer specifications</li>
+            <li>Fabricate countertops using top saws, table saws, and staple guns</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">JAN 2026 —<br>PRESENT</div>
+        <div class="t-node"></div>
+        <div class="t-body">
+          <h4>Electrical Team Member <span>· UBC Agrobots</span></h4>
+          <ul>
+            <li>Engineered power systems for an AI-controlled automated robot (Jetson Orin + ESP32)</li>
+            <li>Researched integration of variable-power-rating components on a shared 48V bus</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">AUG 2023 —<br>AUG 2025</div>
+        <div class="t-node"></div>
+        <div class="t-body">
+          <h4>Market Research Interviewer <span>· Access Research</span></h4>
+          <ul>
+            <li>Conducted field research and surveys for clients including the Toronto Police Service</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">AUG 2022 —<br>JUL 2023</div>
+        <div class="t-node"></div>
+        <div class="t-body">
+          <h4>Treasurer &amp; Teaching Assistant <span>· MLIS Robotics Club</span></h4>
+          <ul>
+            <li>Taught a year-long Arduino IDE robotics course to 100+ students</li>
+            <li>Launched a club-run robotics parts venture, its first ever profitable initiative</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section">
+    <div class="section-head">
+      <span class="node"></span>
+      <h2><span class="idx">03</span> Spec Sheet</h2>
+      <p class="section-sub">Tools and technologies</p>
+    </div>
+
+    <div class="spec-table">
+      <div class="spec-row">
+        <div class="spec-key">LANGUAGES</div>
+        <div class="spec-val">C · C++ · Java · Python · MATLAB</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">EMBEDDED / HW</div>
+        <div class="spec-val">Arduino · ESP32 · RLC Circuit Design</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">DESIGN / CAD</div>
+        <div class="spec-val">Fusion 360 · Tinkercad · LTspice · Adobe Creative Suite</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-key">EDUCATION</div>
+        <div class="spec-val">B.A.Sc Electrical Engineering, UBC — Dean's List — Class of 2029</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / FOOTER ===== -->
+  <footer id="contact" class="footer">
+    <div class="section-head">
+      <span class="node"></span>
+      <h2><span class="idx">04</span> Contact</h2>
+    </div>
+    <div class="pinout">
+      <a href="mailto:hasnatsameen@gmail.com" class="pinout-item">
+        <span class="pin-num">P1</span> EMAIL <span class="pin-val">hasnatsameen@gmail.com</span>
+      </a>
+      <a href="tel:+16393840065" class="pinout-item">
+        <span class="pin-num">P2</span> PHONE <span class="pin-val">(639) 384-0065</span>
+      </a>
+      <a href="#" class="pinout-item" target="_blank">
+        <span class="pin-num">P3</span> LINKEDIN <span class="pin-val">/in/replace-me</span>
+      </a>
+      <a href="#" class="pinout-item" target="_blank">
+        <span class="pin-num">P4</span> GITHUB <span class="pin-val">/replace-me</span>
+      </a>
+    </div>
+    <p class="footer-note">Vancouver, BC &nbsp;—&nbsp; Built &amp; deployed on GitHub Pages</p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
