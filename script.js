@@ -1,4 +1,4 @@
-// Terminal-style boot sequence in the hero section
+// ---- Terminal boot sequence ----
 const lines = [
   "> loading profile...",
   "> role: electrical_engineering_student",
@@ -34,3 +34,27 @@ if (el) {
     typeNext();
   }
 }
+
+// ---- Mobile nav toggle ----
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
+
+// ---- Experience tabs ----
+const expTabs = document.querySelectorAll('.exp-tab');
+const expPanels = document.querySelectorAll('.exp-panel');
+expTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    expTabs.forEach(t => t.classList.remove('active'));
+    expPanels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.target).classList.add('active');
+  });
+});
