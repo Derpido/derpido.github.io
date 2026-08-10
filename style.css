@@ -38,8 +38,9 @@ body{
 }
 
 @media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; }
+  *{ transition: none !important; }
   html{ scroll-behavior: auto; }
+  .pre-reveal, .sec-hidden{ opacity: 1 !important; transform: none !important; }
 }
 
 a{ color: inherit; text-decoration: none; }
@@ -132,6 +133,31 @@ img{ max-width: 100%; display: block; }
 }
 .term .cursor{ display: inline-block; width: 7px; height: 14px; background: var(--copper-br); animation: blink 1s step-end infinite; vertical-align: -2px; }
 @keyframes blink{ 50%{ opacity: 0; } }
+
+/* blinking text cursor that trails the hero title */
+.title-cursor{
+  display: inline-block;
+  width: 4px;
+  height: 0.82em;
+  margin-left: 6px;
+  background: var(--copper-br);
+  vertical-align: -0.06em;
+  animation: blink 1.05s step-end infinite;
+}
+
+/* hero parts that cascade in after the title finishes */
+.pre-reveal{ opacity: 0; transform: translateY(10px); }
+.pre-reveal.is-in{
+  opacity: 1; transform: none;
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+/* sections fade up on scroll */
+.sec-hidden{ opacity: 0; transform: translateY(16px); }
+.sec-in{
+  opacity: 1; transform: none;
+  transition: opacity .55s ease, transform .55s ease;
+}
 
 .hero-title{
   font-family: var(--f-display); font-weight: 700;
