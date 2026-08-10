@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scribble Pad — Mir Sameen Hasnat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<style>
+  :root{
+    --bg:#0b0f0d; --surface:#101613; --line:#223028;
+    --copper:#c17f45; --copper-br:#e3a868; --silk:#eceae2; --silk-dim:#9aa39c; --muted:#5e6b64;
+    --f-display:'Chakra Petch',sans-serif; --f-mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--silk); font-family:var(--f-mono);
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:48px 48px; background-attachment:fixed;
+    min-height:100vh; padding:28px 20px 60px;
+  }
+  .wrap{max-width:1040px;margin:0 auto}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  h1{font-family:var(--f-display);font-size:24px;font-weight:700}
+  h1 span{color:var(--copper-br)}
+  .back{font-size:11px;letter-spacing:.06em;color:var(--silk-dim);border:1px solid var(--line);padding:8px 14px;text-decoration:none;border-radius:2px}
+  .back:hover{border-color:var(--copper);color:var(--copper-br)}
+  .note{font-size:12px;color:var(--muted);margin-bottom:16px;max-width:74ch;line-height:1.6}
+  .stage{border:1px solid var(--line);border-radius:2px;background:var(--surface);padding:10px;position:relative}
+  .stage::before,.stage::after{content:'';position:absolute;width:6px;height:6px;border:1px solid var(--copper);opacity:.5}
+  .stage::before{top:6px;left:6px;border-right:none;border-bottom:none}
+  .stage::after{bottom:6px;right:6px;border-left:none;border-top:none}
+  canvas{display:block;width:100%!important;height:auto!important;border-radius:2px;touch-action:none}
+  .loading{padding:60px 20px;text-align:center;color:var(--muted);font-size:12px}
+  .hint{margin-top:14px;font-size:11.5px;color:var(--silk-dim);line-height:1.9}
+  .hint b{color:var(--copper-br);font-weight:500}
+  kbd{border:1px solid var(--line);border-radius:3px;padding:1px 6px;font-size:10.5px;color:var(--silk)}
+  .toolbar{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .tbtn{font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;background:none;color:var(--silk-dim);
+        border:1px solid var(--line);border-radius:2px;padding:8px 14px;cursor:pointer}
+  .tbtn:hover{border-color:var(--copper);color:var(--copper-br)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Scribble <span>Pad</span></h1>
+    <a href="../index.html#software" class="back">&larr; Back to portfolio</a>
+  </div>
+  <p class="note">
+    The original Processing sketch (2021), rebuilt in p5.js with its original artwork so it
+    runs in the browser with nothing to install.
+  </p>
+
+  <div class="stage"><div id="holder"><div class="loading">Loading Scribble Pad&hellip;</div></div></div>
+
+  <div class="toolbar">
+    <button class="tbtn" id="saveBtn">Save PNG</button>
+    <button class="tbtn" id="clearBtn">Clear board</button>
+  </div>
+
+  <p class="hint">
+    <b>Left click + drag</b> to draw &nbsp;&middot;&nbsp; <b>Right click + drag</b> to erase &nbsp;&middot;&nbsp;
+    <kbd>Space</kbd> clears the board<br>
+    Click the <b>&bull;&bull;&bull;</b> button (top-left) to open the dashboard.
+  </p>
+</div>
+
+<script>
+const W = 1000, H = 800;
+const DIR = "scribble-data/";
+
+let board;
+let state = "pad";
+let bgColor, pencilColor, strokeSize = 10;
+let IMG = {};
+
+const FILES = {
+  Exit:"Exit.png", Instructions:"Instructions.png", Pencil_Settings:"Pencil_Settings.png",
+  More:"More_Button.png", Dashboard:"Dashboard.png", Board_Settings:"Board_Settings.png",
+  Pencil:"Pencil.png", Eraser:"Eraser.png", About:"About.png",
+  Instructions_Texts:"Instructions_Text.png", Credits:"Credits.png",
+  Black:"Black.png", White:"White.png", Red:"Red.png", Green:"Green.png", Blue:"Blue.png",
+  Small:"Small.png", Medium:"Medium.png", Big:"Big.png",
+  Pencil_T:"Pencil_Text.png", Board_T:"Board_Text.png"
+};
+
+function preload(){
+  for (const k in FILES) IMG[k] = loadImage(DIR + FILES[k]);
+}
+
+// single-fire click guard (stands in for the original's delay(100))
+let lastAct = 0;
+function act(){ if (millis() - lastAct > 200){ lastAct = millis(); return true; } return false; }
+function hit(x,y,w,h){ return mouseX>x && mouseX<x+w && mouseY>y && mouseY<y+h; }
+
+function setup(){
+  document.getElementById("holder").innerHTML = "";
+  const c = createCanvas(W,H);
+  c.parent("holder");
+  c.elt.addEventListener("contextmenu", e => e.preventDefault());
+
+  bgColor = color("#FFFFFF");
+  pencilColor = color("#000000");
+
+  board = createGraphics(W,H);
+  board.background("#FFFFFF");
+  loadSaved();
+
+  document.getElementById("saveBtn").onclick = () => saveCanvas(board,"scribble-pad","png");
+  document.getElementById("clearBtn").onclick = () => { board.background(bgColor); persist(); };
+}
+
+function draw(){
+  background("#FFFFFF");
+  pad();
+  if (state !== "pad") dashBoard();
+  if (state === "instructions") image(IMG.Instructions_Texts,250,200);
+  if (state === "credits")      image(IMG.Credits,250,200);
+  if (state === "pencil")       pencilPanel();
+  if (state === "board")        boardPanel();
+  image(IMG.More,10,10,50,50);
+}
+
+// ---------- board ----------
+function pad(){
+  if (mouseIsPressed && !overUI() && mouseX>=0 && mouseX<W && mouseY>=0 && mouseY<H){
+    if (mouseButton === LEFT){
+      board.stroke(pencilColor);
+      board.strokeWeight(strokeSize);
+      board.line(pmouseX,pmouseY,mouseX,mouseY);
+    } else if (mouseButton === RIGHT){
+      board.noStroke();
+      board.fill(bgColor);
+      board.ellipse(mouseX,mouseY,30,30);
+    }
+  }
+  image(board,0,0);
+}
+
+function overUI(){
+  if (hit(10,10,50,50)) return true;
+  if (state !== "pad" && hit(60,0,310,70)) return true;
+  if (state !== "pad" && state !== "dashBoard") return hit(250,200,500,400);
+  return false;
+}
+
+// ---------- dashboard ----------
+function dashBoard(){
+  image(IMG.Dashboard,60,0,310,70);
+  image(IMG.Instructions,70,10,50,50);
+  image(IMG.Board_Settings,130,10,50,50);
+  image(IMG.Pencil_Settings,190,10,50,50);
+  image(IMG.About,250,10,50,50);
+  image(IMG.Exit,310,10,50,50);
+}
+
+// ---------- settings panels ----------
+function swatches(y){
+  image(IMG.White,300,y,50,50);
+  image(IMG.Black,360,y,50,50);
+  image(IMG.Red,  420,y,50,50);
+  image(IMG.Green,480,y,50,50);
+  image(IMG.Blue, 540,y,50,50);
+}
+
+function pencilPanel(){
+  image(IMG.Pencil_T,250,200);
+  swatches(450);
+  image(IMG.Small, 360,510,50,50);
+  image(IMG.Medium,420,510,50,50);
+  image(IMG.Big,   480,510,50,50);
+  noFill(); stroke(0); strokeWeight(3);
+  rect(strokeSize===1?360 : strokeSize===5?420 : 480, 510, 50, 50);
+  noStroke();
+}
+
+function boardPanel(){
+  image(IMG.Board_T,250,200);
+  swatches(450);
+}
+
+// ---------- input ----------
+const COLS = [["#FFFFFF",300],["#000000",360],["#F50A0A",420],["#2CB723",480],["#24B4DE",540]];
+
+function mousePressed(){
+  if (!act()) return;
+
+  if (hit(10,10,50,50)){
+    state = (state === "pad") ? "dashBoard" : "pad";
+    return;
+  }
+
+  if (state !== "pad"){
+    if (hit(70,10,50,50)){  state = (state==="instructions") ? "dashBoard" : "instructions"; return; }
+    if (hit(130,10,50,50)){ state = (state==="board")        ? "dashBoard" : "board";        return; }
+    if (hit(190,10,50,50)){ state = (state==="pencil")       ? "dashBoard" : "pencil";       return; }
+    if (hit(250,10,50,50)){ state = (state==="credits")      ? "dashBoard" : "credits";      return; }
+    if (hit(310,10,50,50)){ state = "pad"; return; }
+  }
+
+  if (state === "pencil"){
+    for (const [c,x] of COLS) if (hit(x,450,50,50)){ pencilColor = color(c); return; }
+    if (hit(360,510,50,50)){ strokeSize = 1;  return; }
+    if (hit(420,510,50,50)){ strokeSize = 5;  return; }
+    if (hit(480,510,50,50)){ strokeSize = 10; return; }
+  }
+
+  if (state === "board"){
+    for (const [c,x] of COLS) if (hit(x,450,50,50)){
+      bgColor = color(c); board.background(bgColor); persist(); return;
+    }
+  }
+}
+
+function mouseReleased(){ persist(); }
+
+function keyPressed(){
+  if (keyCode === 32){ board.background(bgColor); persist(); return false; }
+}
+
+// custom cursors, as in the original
+function updateCursor(){
+  if (mouseIsPressed && !overUI()){
+    cursor(mouseButton === RIGHT ? DIR+FILES.Eraser : DIR+FILES.Pencil, 8, 40);
+  } else {
+    cursor(HAND);
+  }
+}
+function mouseMoved(){ updateCursor(); }
+function mouseDragged(){ updateCursor(); }
+
+// ---------- persistence (the original auto-saved to Image.png) ----------
+function persist(){
+  try { localStorage.setItem("scribblePad", board.canvas.toDataURL()); } catch(e){}
+}
+function loadSaved(){
+  try {
+    const d = localStorage.getItem("scribblePad");
+    if (d) loadImage(d, img => board.image(img,0,0));
+  } catch(e){}
+}
+</script>
+</body>
+</html>

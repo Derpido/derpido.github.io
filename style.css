@@ -52,7 +52,7 @@ img{ max-width: 100%; display: block; }
    TRACE LINE
    ============================================ */
 .trace-line{
-  position: absolute; top: 480px; bottom: 0; left: 32px;
+  position: absolute; top: 480px; bottom: 0; left: 4px;
   z-index: 0; pointer-events: none;
 }
 .trace-line line{ stroke: var(--trace); stroke-width: 1.5; stroke-dasharray: 2 6; }
@@ -295,6 +295,11 @@ img{ max-width: 100%; display: block; }
   border-bottom: 1px solid var(--trace); padding-bottom: 2px; transition: border-color .15s ease;
 }
 .proj-link:hover{ border-color: var(--copper-br); }
+.proj-link-strong{
+  background: var(--copper); color: #0b0f0d; font-weight: 600;
+  border: none; border-radius: 2px; padding: 6px 14px;
+}
+.proj-link-strong:hover{ background: var(--copper-br); }
 
 @media (max-width: 760px){
   .proj-card, .proj-card.featured{ grid-template-columns: 1fr; }
