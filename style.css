@@ -38,9 +38,10 @@ body{
 }
 
 @media (prefers-reduced-motion: reduce){
-  *{ transition: none !important; }
   html{ scroll-behavior: auto; }
-  .pre-reveal, .sec-hidden{ opacity: 1 !important; transform: none !important; }
+  /* no sliding, but the reveal still resolves so nothing stays hidden */
+  .pre-reveal{ transform: none !important; }
+  .sec-hidden{ opacity: 1 !important; transform: none !important; }
 }
 
 a{ color: inherit; text-decoration: none; }

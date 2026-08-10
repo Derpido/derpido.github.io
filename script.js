@@ -19,6 +19,8 @@ const titleEl = document.getElementById("heroTitle");
 const descEl  = document.getElementById("heroDesc");
 const linksEl = document.getElementById("heroLinks");
 
+// "reduce motion" suppresses sliding/fading, but the typing still plays —
+// it is text appearing in place, not movement across the screen.
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function makeCursor(cls){
@@ -33,12 +35,7 @@ function revealIn(el, delay){
 }
 
 if (termEl && titleEl){
-  if (reduceMotion){
-    // no animation — show the final state, cursor still blinks
-    termEl.textContent = BOOT.join("\n");
-    titleEl.appendChild(makeCursor("title-cursor"));
-    [descEl, linksEl].forEach(el => el && el.classList.add("is-in"));
-  } else {
+  {
     // hide the parts that come after the title (JS-only, so no-JS still shows them)
     [descEl, linksEl].forEach(el => el && el.classList.add("pre-reveal"));
 
