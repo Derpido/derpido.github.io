@@ -1,0 +1,111 @@
+:root{
+  --bg:#0b0f0d; --surface:#101613; --surface-2:#151d19; --line:#223028;
+  --copper:#c17f45; --copper-br:#e3a868; --silk:#eceae2; --silk-dim:#9aa39c;
+  --muted:#5e6b64; --trace:#2d5a45;
+  --f-display:'Chakra Petch',sans-serif; --f-mono:'IBM Plex Mono',monospace;
+  --edge:1px solid var(--line); --radius:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--silk); font-family:var(--f-mono);
+  font-size:15px; line-height:1.6;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px; background-attachment:fixed;
+  padding:0 20px 90px;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.log{max-width:760px;margin:0 auto}
+
+/* ---- top bar ---- */
+.log-top{display:flex;align-items:center;gap:14px;padding:26px 0 40px}
+.log-back{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border:var(--edge);border-radius:2px;
+  color:var(--copper-br);font-size:15px;transition:border-color .15s ease
+}
+.log-back:hover{border-color:var(--copper)}
+.log-kicker{font-family:var(--f-display);font-size:17px;font-weight:600;color:var(--silk)}
+.log-kicker .slash{color:var(--copper)}
+
+/* ---- masthead ---- */
+.log-head{text-align:center;margin-bottom:30px}
+.log-title{
+  font-family:var(--f-display);font-weight:700;
+  font-size:clamp(26px,4.4vw,38px);line-height:1.2;margin-bottom:6px
+}
+.log-hero{
+  border:var(--edge);border-radius:var(--radius);overflow:hidden;
+  position:relative;margin:26px 0 22px;background:var(--surface-2)
+}
+.log-hero::before,.log-hero::after{
+  content:'';position:absolute;width:7px;height:7px;border:1px solid var(--copper);opacity:.55;z-index:2
+}
+.log-hero::before{top:8px;left:8px;border-right:none;border-bottom:none}
+.log-hero::after{bottom:8px;right:8px;border-left:none;border-top:none}
+.log-hero img{width:100%;max-height:460px;object-fit:cover}
+
+.log-summary{
+  text-align:center;color:var(--silk-dim);font-size:13.5px;
+  max-width:62ch;margin:0 auto 14px;line-height:1.75
+}
+.log-date{
+  text-align:center;color:var(--copper-br);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px
+}
+.log-stack{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:46px}
+.log-stack span{
+  font-size:10px;color:var(--silk-dim);border:var(--edge);
+  padding:3px 9px;border-radius:2px;background:var(--surface-2)
+}
+
+/* ---- body ---- */
+.log-section{margin-bottom:40px}
+.log-h{
+  font-family:var(--f-display);font-size:14.5px;font-weight:600;
+  color:var(--silk);letter-spacing:.01em;padding-bottom:12px;
+  border-bottom:var(--edge);margin-bottom:20px
+}
+.log-h .n{color:var(--copper)}
+.log-section p{color:var(--silk-dim);font-size:14px;margin-bottom:17px;line-height:1.85}
+.log-section p:last-child{margin-bottom:0}
+.log-section em{color:var(--silk);font-style:italic}
+.log-section a.inline{color:var(--copper-br);border-bottom:1px solid var(--trace)}
+.log-section a.inline:hover{border-color:var(--copper-br)}
+
+/* ---- figures ---- */
+figure.log-fig{margin:24px 0}
+figure.log-fig img{
+  border:var(--edge);border-radius:var(--radius);width:100%
+}
+figure.log-fig figcaption{
+  font-size:10.5px;letter-spacing:.05em;color:var(--muted);margin-top:9px;text-align:center
+}
+figure.log-fig.narrow{max-width:430px;margin-left:auto;margin-right:auto}
+
+/* ---- callout ---- */
+.log-note{
+  border-left:3px solid var(--copper);background:var(--surface);
+  padding:15px 20px;margin:24px 0;font-size:13px;color:var(--silk-dim)
+}
+.log-note b{color:var(--copper-br);font-weight:600}
+
+/* ---- footer nav ---- */
+.log-foot{
+  border-top:var(--edge);margin-top:56px;padding-top:26px;
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center
+}
+.log-btn{
+  font-size:11px;letter-spacing:.07em;border:var(--edge);
+  padding:9px 16px;color:var(--silk-dim);border-radius:2px;transition:border-color .15s ease,color .15s ease
+}
+.log-btn:hover{border-color:var(--copper);color:var(--copper-br)}
+.log-btn.fill{background:var(--copper);border-color:var(--copper);color:#0b0f0d;font-weight:600}
+.log-btn.fill:hover{background:var(--copper-br);border-color:var(--copper-br);color:#0b0f0d}
+
+@media (max-width:600px){
+  .log-section p{font-size:13.5px}
+}
