@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bladder Buddy — Project Log | Mir Sameen Hasnat</title>
+<meta name="description" content="A ten-hour hackathon build with three teammates from UBC Agrobots, aimed at replacing a slow lab pre-screening step. I spent six of those hours design">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="log.css">
+</head>
+<body>
+<article class="log">
+
+  <div class="log-top">
+    <a href="../index.html#hardware" class="log-back" aria-label="Back to portfolio">&larr;</a>
+    <span class="log-kicker"><span class="slash">/</span> project log</span>
+  </div>
+
+  <header class="log-head">
+    <h1 class="log-title">Bladder Buddy</h1>
+  </header>
+
+  <div class="log-hero"><img src="../assets/img/hardware/bladder-buddy.jpg" alt="Bladder Buddy"></div>
+
+  <p class="log-summary">A ten-hour hackathon build with three teammates from UBC Agrobots, aimed at replacing a slow lab pre-screening step. I spent six of those hours designing the protein sensor, which denatures protein with vinegar and reads the result through a UV GUVA sensor and detector. It took Special Recognition at the UBC Design Team Competition, from a judge who laughed at the idea first.</p>
+  <div class="log-date">2026</div>
+  <div class="log-stack"><span>C++</span><span>E-CAD</span><span>LTspice</span><span>ESP32</span><span>PCB Design</span></div>
+
+  <section class="log-section">
+    <h2 class="log-h"><span class="n">0.</span> clueless comp</h2>
+    <p>First year of engineering definitely rattled my rails, and to make it worse, I had the urge to embarrass myself at a hackathon. I wasn&rsquo;t alone in the act, as I had my teammates from UBC Agrobots, Robert, Grace and Ray to support me. Unlike many competitions, we didn&rsquo;t get a theme beforehand, and with this being all of our first competition in university, we were all like sheep without a shepherd.</p>
+  </section>
+  <section class="log-section">
+    <h2 class="log-h"><span class="n">1.</span> braincrashing</h2>
+    <p>In the UBC Design Team Competition, we were slightly overwhelmed with more than 50 teams participating and some people looked like they knew what they were doing. We tried to larp our attitude, and with a very broad topic at hand, our first 2 hours went by looking for an idea (the hackathon was 10 hours). Our aim was something that helped people, and after discussing ideas like helping blind people with Jarvis-like helmets or energy-saving buses, we settled on Bladder Buddy</p>
+  </section>
+  <section class="log-section">
+    <h2 class="log-h"><span class="n">2.</span> eureka</h2>
+    <p>Finding a problem to fix was really challenging, but we settled on a medical issue, laboratory tests. We realized that urine was a good diagnosing tool for health problems, and this simple pre-screening relied too heavily on lab assistants who could be doing something better, long wait-times and irritating trips to the hospital. Upon research, we realized that protein and pH could be good pre-screening tools to diagnose early symptoms for kidney malfunction or macro-deficiencies. Dividing up our work, we started to design our project.</p>
+  </section>
+  <section class="log-section">
+    <h2 class="log-h"><span class="n">3.</span> long hours of designing</h2>
+    <p>The rest of our 8 hours primarily went to designing our bladder kit (30 mins to prepping for presentations). Grace designed the pH sensor, which would use a pH probe to check the pH of the urine (essential for ensuring acid-alkaline balance to prevent damage to organs). I designed the protein sensor, which took so long that while the others all together worked on Power Distribution, I worked for 6 hours on my sensor. It initially used Vinegar to denature the protein (weak acid to not be harmful for user) and then using a UV GUVA sensor and detector, the amount of light was shown to be proportional to the amount of protein in urine (usually it all the light should pass through since urine should not contain even minimal amounts of protein, linked to Kidney wall damage). After I was done, I added to the circuit schematics and helped with the PCB design which was all powered by an ESP32.</p>
+    <figure class="log-fig"><img src="../assets/img/hardware/bladder-buddy.jpg" alt="The circuit schematic, built around an ESP32-C3"><figcaption>The circuit schematic, built around an ESP32-C3</figcaption></figure>
+  </section>
+  <section class="log-section">
+    <h2 class="log-h"><span class="n">4.</span> presentation</h2>
+    <p>This generally was my stronger side, and I took the initiative in my team to lead with the presentation. Although it sounds arrogant, I worked so deeply in every aspect that I felt like the component was born of me! What&rsquo;s interesting was before the competition started, we got a bit of attention and even attracted an ECE professor (who also happened to be our judge, which we did not know then) who listened to us pitch our idea. Generally, competitions attract the likes of rocket or car enthusiasts, or at least people with a great sci-fi vision that no one has every heard of. However, listening to our idea Bladder Buddy, the professor couldn&rsquo;t hold back a laugh because he was amazed by how original our idea was. You could tell from a distance this was a goofy idea. In retrospect, this moment was a shining light upon our path since we weren&rsquo;t able to finish our presentation within the time limit (I blame the graduate moderator, who was extremely strict on our timing, contrary to other moderators). We did not really hope for anything, which is why we were shocked when we heard a Special Recognition for Bladder Buddy. That one unplanned moment went a long way for us&hellip;</p>
+  </section>
+
+
+  <div class="log-foot">
+    <a href="../index.html#hardware" class="log-btn">&larr; Back to projects</a>
+    <div><a href="https://github.com/Derpido/derpido.github.io/blob/main/assets/code/bladder_buddy.ino" target="_blank" rel="noopener" class="log-btn">View Code &nearr;</a> <a href="../assets/docs/bladder-buddy-presentation.pdf" target="_blank" class="log-btn">View Details &nearr;</a></div>
+  </div>
+
+</article>
+</body>
+</html>

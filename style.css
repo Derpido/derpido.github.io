@@ -446,3 +446,68 @@ img{ max-width: 100%; display: block; }
   .pinout{ grid-template-columns: 1fr; }
   .pin-val{ display:none; }
 }
+
+/* ============================================
+   CONTRIBUTORS BUTTON + MODAL
+   ============================================ */
+.contrib-btn{
+  position: absolute; right: 16px; bottom: 14px; z-index: 3;
+  width: 30px; height: 30px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface-2); border: var(--edge); border-radius: 50%;
+  color: var(--silk-dim); cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.contrib-btn svg{
+  width: 16px; height: 16px; fill: none; stroke: currentColor;
+  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+}
+.contrib-btn:hover{ border-color: var(--copper); color: var(--copper-br); background: var(--surface); }
+.contrib-btn:focus-visible{ outline: 2px solid var(--copper); outline-offset: 2px; }
+
+.contrib-overlay{
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: rgba(11,15,13,0.55);
+  backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none; transition: opacity .18s ease;
+}
+.contrib-overlay.open{ opacity: 1; pointer-events: auto; }
+
+.contrib-modal{
+  position: relative; width: 100%; max-width: 340px;
+  background: var(--surface); border: var(--edge); border-radius: var(--radius);
+  padding: 26px 28px 24px;
+  transform: translateY(8px); transition: transform .18s ease;
+}
+.contrib-overlay.open .contrib-modal{ transform: none; }
+.contrib-modal::before, .contrib-modal::after{
+  content:''; position:absolute; width:7px; height:7px; border:1px solid var(--copper); opacity:.6;
+}
+.contrib-modal::before{ top:9px; left:9px; border-right:none; border-bottom:none; }
+.contrib-modal::after{ bottom:9px; right:9px; border-left:none; border-top:none; }
+
+.contrib-label{
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 6px;
+}
+.contrib-title{
+  font-family: var(--f-display); font-size: 17px; font-weight: 600;
+  margin-bottom: 16px; padding-bottom: 13px; border-bottom: var(--edge);
+}
+.contrib-names{ display: flex; flex-direction: column; gap: 9px; }
+.contrib-names li{
+  position: relative; padding-left: 17px; font-size: 13px; color: var(--silk-dim);
+}
+.contrib-names li::before{ content:'\25B8'; position:absolute; left:0; color: var(--copper); }
+
+.contrib-close{
+  position: absolute; top: 10px; right: 12px;
+  background: none; border: none; color: var(--muted);
+  font-size: 17px; line-height: 1; cursor: pointer; padding: 4px;
+}
+.contrib-close:hover{ color: var(--copper-br); }
+
+@media (prefers-reduced-motion: reduce){
+  .contrib-overlay, .contrib-modal{ transition: none; }
+}

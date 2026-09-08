@@ -141,3 +141,56 @@ if (!reduceMotion && "IntersectionObserver" in window){
   }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
   secs.forEach(s => io.observe(s));
 }
+
+// =========================================================
+// Contributors popup
+// =========================================================
+(function(){
+  const buttons = document.querySelectorAll(".contrib-btn");
+  if (!buttons.length) return;
+
+  const overlay = document.createElement("div");
+  overlay.className = "contrib-overlay";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.innerHTML =
+    '<div class="contrib-modal">' +
+      '<button class="contrib-close" aria-label="Close">&times;</button>' +
+      '<div class="contrib-label">Contributors</div>' +
+      '<div class="contrib-title"></div>' +
+      '<ul class="contrib-names"></ul>' +
+    '</div>';
+  document.body.appendChild(overlay);
+
+  const titleEl = overlay.querySelector(".contrib-title");
+  const listEl  = overlay.querySelector(".contrib-names");
+  const modal   = overlay.querySelector(".contrib-modal");
+  let lastFocus = null;
+
+  function open(btn){
+    lastFocus = btn;
+    titleEl.textContent = btn.dataset.project || "";
+    listEl.innerHTML = "";
+    (btn.dataset.names || "").split(",").forEach(n => {
+      const li = document.createElement("li");
+      li.textContent = n.trim();
+      listEl.appendChild(li);
+    });
+    overlay.classList.add("open");
+    overlay.querySelector(".contrib-close").focus();
+  }
+
+  function close(){
+    overlay.classList.remove("open");
+    if (lastFocus) lastFocus.focus();
+  }
+
+  buttons.forEach(b => b.addEventListener("click", e => { e.preventDefault(); open(b); }));
+
+  // clicking anywhere outside the modal closes it
+  overlay.addEventListener("click", e => { if (!modal.contains(e.target)) close(); });
+  overlay.querySelector(".contrib-close").addEventListener("click", close);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && overlay.classList.contains("open")) close();
+  });
+})();

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Soil Measuring System — Project Log | Mir Sameen Hasnat</title>
-<meta name="description" content="Born from killing a few of my mother's plants by overwatering them while she was away. A soil moisture sensor and a temperature sensor feed an Arduino, which prints everything to an LCD so the guesswork disappears. Deliberately simple, and really a litmus test for a bigger project I have planned.">
+<meta name="description" content="Born from killing a few of my mother's plants by overwatering them while she was away. A soil moisture and temperature sensor feed an Arduino that prints readings to an LCD, then trigger a mains-powered pump through a relay to water the plants automatically. My watering threshold turned out to be badly chosen, and the plants paid for it — a useful lesson, and a litmus test for a bigger project I have planned.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,14 +24,15 @@
 
   <div class="log-hero"><img src="../assets/img/hardware/soil-monitor.jpg" alt="Soil Measuring System"></div>
 
-  <p class="log-summary">Born from killing a few of my mother's plants by overwatering them while she was away. A soil moisture sensor and a temperature sensor feed an Arduino, which prints everything to an LCD so the guesswork disappears. Deliberately simple, and really a litmus test for a bigger project I have planned.</p>
+  <p class="log-summary">Born from killing a few of my mother's plants by overwatering them while she was away. A soil moisture and temperature sensor feed an Arduino that prints readings to an LCD, then trigger a mains-powered pump through a relay to water the plants automatically. My watering threshold turned out to be badly chosen, and the plants paid for it — a useful lesson, and a litmus test for a bigger project I have planned.</p>
   <div class="log-date">2023</div>
-  <div class="log-stack"><span>Arduino</span><span>DHT11</span><span>Analog Sensing</span><span>LCD</span></div>
+  <div class="log-stack"><span>Arduino</span><span>DHT11</span><span>Analog Sensing</span><span>LCD</span><span>Relay Control</span><span>Water Pump</span></div>
 
   <section class="log-section">
     <p>This project was less exciting, but was more of a litmus test for a bigger project I have planned (which I will execute later). Essentially, to rid myself of boredom, I realized a problem in my life, that I had been drinking too little water. My mother&rsquo;s plants however, seemingly would die of too much water. I knew this because when my parents left on vacation, my mom gave me the duty of watering her plants and I would feed them like cows, heaps of abundance. Sadly, a few died in their greed and lack of self-control and I was held culprit. But in my defense, the dirt looked dry the next day anyways, how would I be able to tell that the plant was still full. I needed to develop a more accurate way for someone blind of sense like me.</p>
     <p>I gathered a soil moisture sensor and a temperature sensor, the former would let me know if the soil was dry and the latter would let me know if the plant was sick (just kidding, it was just an accessory to fill up my LCD display).</p>
-    <p>Pairing everything up with my arduino, I dropped my code into my band of electronics and I got myself a display that told me everything I needed to know about my mom&rsquo;s plants (very boring indeed).</p>
+    <p>Pairing everything up with my arduino, I dropped my code into my band of electronics and I got myself a display that told me everything I needed to know about my mom&rsquo;s plants (very boring indeed). It of course did not stop there, measuring the soil content was one part, I also needed to water the plants.</p>
+    <p>The metric I used was, when the soil moisture dropped below 25%, the motor would pump water until the moisture would rise back to 100%. The pump was strong, and was connected directly to the mains line with the help of a relay circuit. However, for any agricultural experts reading this, they would immediately know that my metric was disastrous as this would pump water everyday for a while, not taking into account the water the plant had already sucked in from the dirt, creating an excess of water in the plants leaves and causing the cells inside to burst! I learned it the hard way when my mom found most of her plants already dead :(. I was not given a return offer to watch over her plants again!</p>
   </section>
 
 
