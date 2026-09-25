@@ -113,15 +113,17 @@ if (navToggle && navLinks){
 // =========================================================
 // Experience tabs
 // =========================================================
-const expTabs   = document.querySelectorAll(".exp-tab");
-const expPanels = document.querySelectorAll(".exp-panel");
-expTabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    expTabs.forEach(t => t.classList.remove("active"));
-    expPanels.forEach(p => p.classList.remove("active"));
-    tab.classList.add("active");
-    const target = document.getElementById(tab.dataset.target);
-    if (target) target.classList.add("active");
+document.querySelectorAll(".exp-wrap").forEach(wrap => {
+  const tabs   = wrap.querySelectorAll(".exp-tab");
+  const panels = wrap.querySelectorAll(".exp-panel");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      panels.forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      const target = wrap.querySelector("#" + tab.dataset.target);
+      if (target) target.classList.add("active");
+    });
   });
 });
 

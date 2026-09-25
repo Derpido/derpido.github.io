@@ -256,10 +256,7 @@
         </div>
         <div class="proj-body">
           <div class="proj-year">2021</div>
-          <div class="proj-top">
-            <h3>Scribble Pad</h3>
-            <span class="badge">Tech Lab Programming Comp. — Winner, 2021</span>
-          </div>
+          <h3>Scribble Pad</h3>
           <p>A lightweight sketch-and-note app with mouse/touch tracking, auto-save, and a
             customizable board. Originally written in Processing — rebuilt in p5.js so you can
             try it right here in the browser.</p>
@@ -285,6 +282,26 @@
     </div>
 
     <div class="proj-grid proj-grid-3">
+
+      <article class="proj-card">
+        <div class="proj-media"><img src="assets/img/hardware/feetball.jpg" alt="Feetball soccer robot"></div>
+        <div class="proj-body">
+          <div class="proj-year">2026</div>
+          <h3>Feetball</h3>
+          <p>
+            A soccer-playing robot driven from a PS5 DualSense controller. Four motors on
+            mecanum wheels let it strafe and rotate in any direction, with a front bender to
+            dribble the ball. Circuit simulated in LTspice first, then powered off a 7.4V LiPo
+            with a buck converter stepping down for the ESP32.
+          </p>
+          <div class="proj-stack"><span>ESP32</span><span>C++</span><span>LTspice</span><span>Mecanum Wheels</span><span>PS5 Controller</span></div>
+          <div class="proj-actions">
+            <a href="logs/feetball.html" class="proj-link">Full project log &rarr;</a>
+            <a href="https://github.com/Derpido/derpido.github.io/blob/main/assets/code/soccer_robot_ps5.ino" target="_blank" rel="noopener" class="proj-link">View Code &nearr;</a>
+            <a href="https://github.com/Derpido/derpido.github.io/tree/main/assets/code" target="_blank" rel="noopener" class="proj-link">Motor Tests &nearr;</a>
+          </div>
+        </div>
+      </article>
 
       <article class="proj-card">
         <div class="proj-media">
@@ -477,55 +494,35 @@
       <h2><span class="idx">/</span> community projects</h2>
       <p class="section-sub">Teaching, workshops and giving technology a second life</p>
     </div>
-    <div class="research-list">
+    <div class="exp-wrap">
+      <div class="exp-tabs">
+        <button class="exp-tab active" data-target="com-0">Reboot</button>
+        <button class="exp-tab" data-target="com-1">Robotics Club</button>
+      </div>
 
-      <article class="research-item">
-        <div class="research-meta">
-          <span class="research-tag">Founder</span>
-          <span class="research-year">2026 — present</span>
+      <div class="exp-panels">
+        <div class="exp-panel active" id="com-0">
+          <h3>Reboot <span class="exp-at">· Founder</span></h3>
+          <div class="exp-when">2026 — PRESENT</div>
+          <ul>
+            <li>Buy scrapped laptops, diagnose the hardware and motherboard faults myself, and rebuild them into working machines</li>
+            <li>Hold every device to a performance and cosmetic standard so it is genuinely usable before it goes out</li>
+            <li>Pass them on to underprivileged communities, each capable of simulation, modelling and everyday productivity</li>
+            <li>Raise funding to buy and repair a wide range of laptops</li>
+          </ul>
         </div>
-        <h3>Reboot</h3>
-        <p>
-          Buying scrapped laptops, diagnosing the hardware and motherboard faults myself, and
-          rebuilding them into working machines. Each one is held to a performance and cosmetic
-          standard before it goes out, so people receiving them get something genuinely usable
-          for study or work — capable of simulation, modelling and everyday productivity.
-        </p>
-      </article>
 
-      <article class="research-item">
-        <div class="research-meta">
-          <span class="research-tag">Organizer</span>
-          <span class="research-year">2023</span>
+        <div class="exp-panel" id="com-1">
+          <h3>Robotics Club <span class="exp-at">· Founder, Treasurer &amp; Teaching Assistant</span></h3>
+          <div class="exp-when">2022 — 2023</div>
+          <ul>
+            <li><strong>Robotics Course for School Students (2022–2023)</strong> — taught a year-long Arduino IDE course to 100+ students, free of charge, to make technical resources more accessible in the community</li>
+            <li><strong>PC Building Workshop (2023)</strong> — ran a workshop sponsored by Corsair for over 300 students</li>
+            <li><strong>Robotics Techkits Startup (2022)</strong> — founded a student venture selling robotics parts, generating the club's first-ever profit of $2,000 and raising funding for club operations</li>
+            <li>Founded the Robotics Club at Walter Murray Collegiate</li>
+          </ul>
         </div>
-        <h3>PC Building Workshop</h3>
-        <p>Ran a PC-building workshop sponsored by Corsair for over 300 students.</p>
-      </article>
-
-      <article class="research-item">
-        <div class="research-meta">
-          <span class="research-tag">Teaching Assistant</span>
-          <span class="research-year">2022 — 2023</span>
-        </div>
-        <h3>Robotics Course for School Students</h3>
-        <p>
-          Taught a year-long Arduino IDE robotics course to more than 100 students, free of
-          charge, to make technical resources more accessible in the community.
-        </p>
-      </article>
-
-      <article class="research-item">
-        <div class="research-meta">
-          <span class="research-tag">Treasurer</span>
-          <span class="research-year">2022</span>
-        </div>
-        <h3>Robotics Techkits Startup</h3>
-        <p>
-          Founded a student venture selling robotics parts for the club, generating its
-          first-ever profit of $2,000 and raising funding for club operations.
-        </p>
-      </article>
-
+      </div>
     </div>
   </section>
 
