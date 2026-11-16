@@ -511,3 +511,90 @@ img{ max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce){
   .contrib-overlay, .contrib-modal{ transition: none; }
 }
+
+/* ============================================
+   CAROUSELS (software / hardware / research / art)
+   ============================================ */
+.exp-summary{ color: var(--silk-dim); font-size: 13px; margin-bottom: 16px; max-width: 75ch; }
+.exp-panel li strong{ color: var(--silk); font-weight: 500; }
+.exp-stack{ margin: 18px 0 0; }
+
+.carousel{ --gap: 20px; --p: var(--per, 1); position: relative; }
+.car-track{
+  display: flex; gap: var(--gap);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none; overscroll-behavior-x: contain;
+  padding: 2px 0;
+}
+.car-track::-webkit-scrollbar{ display: none; }
+.car-track > *{
+  flex: 0 0 calc((100% - (var(--p) - 1) * var(--gap)) / var(--p));
+  min-width: 0; scroll-snap-align: start;
+}
+
+/* arrows */
+.car-btn{
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+  width: 38px; height: 38px; border-radius: 50%; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(16,22,19,.92); border: 1px solid var(--copper);
+  color: var(--copper-br); cursor: pointer;
+  transition: background .15s ease, opacity .15s ease, border-color .15s ease;
+}
+.car-btn svg{ width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.car-btn:hover{ background: var(--copper); color: #0b0f0d; }
+.car-btn:focus-visible{ outline: 2px solid var(--copper-br); outline-offset: 2px; }
+.car-btn[disabled]{ opacity: .25; cursor: default; pointer-events: none; }
+.car-prev{ left: -19px; }
+.car-next{ right: -19px; }
+.carousel.no-scroll .car-btn, .carousel.no-scroll .car-dots{ display: none; }
+
+/* dots */
+.car-dots{ display: flex; justify-content: center; gap: 8px; margin-top: 18px; min-height: 4px; }
+.car-dot{
+  width: 26px; height: 4px; padding: 0; border: none; border-radius: 2px;
+  background: var(--line); cursor: pointer; transition: background .2s ease, width .2s ease;
+}
+.car-dot.active{ background: var(--copper); width: 38px; }
+.car-dot:focus-visible{ outline: 2px solid var(--copper-br); outline-offset: 3px; }
+
+/* the arrows sit on the card edge; dots are below, so centre on the track */
+.carousel .car-btn{ top: calc(50% - 20px); }
+
+/* side-by-side project cards: image on top, copy underneath */
+.carousel-cards .proj-card{ grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+.carousel-cards .proj-media{ border-right: none; border-bottom: var(--edge); height: 200px; }
+.carousel-cards .proj-media img{ min-height: 0; height: 100%; }
+.carousel-cards .proj-body{ padding: 22px 22px 52px; }
+.carousel-cards .proj-body h3{ font-size: 17px; }
+.carousel-cards .proj-body p{ font-size: 12.5px; }
+.carousel-cards .proj-actions{ gap: 12px 16px; }
+.carousel-cards .badge{ white-space: normal; }
+
+/* research cards fill the slide height */
+.carousel .research-item{ display: flex; flex-direction: column; }
+.carousel .research-item p{ flex: 1; }
+.carousel .research-item .proj-link{ align-self: flex-start; }
+
+/* art */
+.art-carousel .art-piece{ margin: 0; display: flex; flex-direction: column; }
+.art-link{ display: block; background: var(--surface-2); }
+.art-carousel .art-piece img{ width: 100%; height: 340px; object-fit: cover; transition: transform .3s ease; }
+.art-carousel .art-piece:hover img{ transform: scale(1.03); }
+.art-link{ overflow: hidden; }
+
+@media (max-width: 900px){
+  .carousel-cards{ --p: min(var(--per, 1), 2); }
+}
+@media (max-width: 600px){
+  .carousel-cards{ --p: 1; }
+  .carousel{ --gap: 14px; }
+  /* on phones the arrows move down beside the dots so they never cover text */
+  .carousel .car-btn{ top: auto; bottom: -9px; transform: none; width: 34px; height: 34px; }
+  .car-prev{ left: 0; }
+  .car-next{ right: 0; }
+  .car-dots{ margin-top: 22px; padding: 0 48px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .car-track{ scroll-behavior: auto; }
+}

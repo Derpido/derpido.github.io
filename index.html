@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mir Sameen Hasnat — Portfolio</title>
-<meta name="description" content="Electrical Engineering student portfolio — embedded systems, power electronics, robotics, and CAD.">
+<meta name="description" content="Electrical Engineering student portfolio — embedded systems, power electronics, robotics and software.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,7 +25,6 @@
         <a href="#experience">Experience</a>
         <a href="#software">Software</a>
         <a href="#hardware">Hardware</a>
-        <a href="#cad">CAD</a>
         <a href="#community">Community</a>
         <a href="#research">Research</a>
         <a href="#art">Art</a>
@@ -113,15 +112,15 @@
         <div class="about-stack">
           <div>
             <span class="stack-key">Languages</span>
-            <span>▹ C, C++, Java, Python, MATLAB</span>
+            <span>▹ C, C++, Java, Python, MATLAB, SystemVerilog, Assembly</span>
           </div>
           <div>
             <span class="stack-key">Hardware &amp; Embedded</span>
-            <span>▹ ESP32, Arduino, NVIDIA Jetson Orin, PCB Design, Schematic Capture, Buck Converters, Motor Drivers</span>
+            <span>▹ ESP32, Arduino, NVIDIA Jetson Orin, PCB Design, Schematic Capture, PWM Motor Control, Buck Converters, Motor Drivers</span>
           </div>
           <div>
             <span class="stack-key">Design &amp; Simulation</span>
-            <span>▹ Fusion 360, SolidWorks, LTspice, Tinkercad, Adobe Creative Suite, Canva</span>
+            <span>▹ Fusion 360, Altium, Quartus, SolidWorks, LTspice, Tinkercad, Adobe Creative Suite, MS Office</span>
           </div>
           <div>
             <span class="stack-key">Fabrication</span>
@@ -156,7 +155,7 @@
     <div class="edu-card">
       <div class="edu-main">
         <h3>University of British Columbia</h3>
-        <p class="edu-degree">B.A.Sc, Electrical Engineering (Co-op) — 2nd Year</p>
+        <p class="edu-degree">Bachelor of Applied Science, Electrical Engineering (Co-op) — 2nd Year · Vancouver, BC</p>
         <p class="edu-degree">Relevant coursework: Computer Systems I (CPEN 211), Circuit Analysis (ELEC 201), Data Structures &amp; Algorithms (CPSC 259), Multivariable Calculus (MATH 253), Differential Equations (MATH 255)</p>
         <div class="edu-tags">
           <span class="badge">Dean's List (Fall 2026)</span>
@@ -187,38 +186,50 @@
       <div class="exp-panels">
         <div class="exp-panel active" id="exp-0">
           <h3>Electrical Team Member — Safety &amp; Power <span class="exp-at">@ UBC Agrobots</span></h3>
-          <div class="exp-when">JAN 2026 — PRESENT</div>
+          <div class="exp-when">JAN 2026 — PRESENT · VANCOUVER, BC</div>
+          <p class="exp-summary">UBC Agrobots is a student design team building an AI-driven autonomous farming robot that handles weed control, seed sowing and crop harvesting. I work on the Safety &amp; Power sub-team, in the group responsible for powering the robot on and off safely.</p>
           <ul>
-            <li>Developing a battery e-stop PCB and a pre-charge PCB across a main contactor for safe power-on/off of a 48V robot</li>
-            <li>Architected 48V power distribution to mixed-voltage loads via buck converters and bus bars, powering 3 systems: weeding, sowing, harvesting</li>
-            <li>Integrated an NVIDIA Jetson Orin for AI-driven autonomy with ESP32 microcontrollers for motor and peripheral control</li>
-            <li>Led electrical interface and documentation coordination across 4 sub-teams, aligning mechanical, electrical and software designs</li>
+            <li><strong>Battery e-stop PCB</strong> — designing the emergency-stop board that lets an operator cut the robot's 48V battery supply at any moment</li>
+            <li><strong>Pre-charge PCB</strong> — designing, in Altium, the board wired across the main contactor that charges downstream capacitance gradually before the contactor closes, so the system doesn't take a damaging inrush current at power-on</li>
+            <li><strong>Power distribution</strong> — architected how a shared 48V battery feeds loads with different voltage ratings, stepping down through buck converters and routing current through bus bars</li>
+            <li><strong>Compute and control</strong> — integrated an NVIDIA Jetson Orin for AI-driven autonomy with ESP32 microcontrollers handling motor and peripheral control</li>
+            <li><strong>Cross-team coordination</strong> — keep electrical interfaces and documentation aligned across 4 sub-teams so mechanical, electrical and software designs fit together</li>
           </ul>
+          <div class="proj-stack exp-stack"><span>Altium</span><span>PCB Design</span><span>Power Electronics</span><span>48V DC</span><span>Buck Converters</span><span>ESP32</span><span>Jetson Orin</span></div>
         </div>
         <div class="exp-panel" id="exp-1">
           <h3>Production Worker <span class="exp-at">@ Floform Industries</span></h3>
-          <div class="exp-when">JUL 2026 — AUG 2026</div>
+          <div class="exp-when">JUL 2026 — AUG 2026 · SASKATOON, SK</div>
+          <p class="exp-summary">Floform Industries designs and manufactures custom countertops. Over the summer I worked across both design and the production floor.</p>
           <ul>
-            <li>Modelled countertops in Fusion 360 and fabricated each to spec with CNC machines, table saws and staple guns for client deadlines</li>
-            <li>Operated across 4 production stations, including buildup, spray and lamination, filling staffing gaps to maintain line output</li>
+            <li>Modelled countertop layouts in Fusion 360 from client specifications before anything was cut</li>
+            <li>Fabricated countertops to spec using CNC machines, table saws and staple guns to meet client deadlines</li>
+            <li>Worked across 4 production stations, including buildup, spray and lamination</li>
+            <li>Moved between stations to fill staffing gaps and keep the production line running on schedule</li>
           </ul>
+          <div class="proj-stack exp-stack"><span>Fusion 360</span><span>CNC Machining</span><span>Fabrication</span><span>Lamination</span></div>
         </div>
         <div class="exp-panel" id="exp-2">
           <h3>Market Research Interviewer <span class="exp-at">@ Access Research</span></h3>
           <div class="exp-when">AUG 2023 — AUG 2025</div>
+          <p class="exp-summary">Two years conducting survey research for institutional clients across the public and private sectors.</p>
           <ul>
-            <li>Surveyed respondents for colleges, Toronto Police Service and public/private clients, earning a 92% communication rating</li>
-            <li>Collected field research data over 2 years for media and communication development projects</li>
+            <li>Conducted surveys on behalf of colleges, the Toronto Police Service and a range of public- and private-sector clients</li>
+            <li>Earned a 92% communication and customer service rating</li>
+            <li>Collected field research and data for media and communication development projects</li>
           </ul>
+          <div class="proj-stack exp-stack"><span>Communication</span><span>Data Collection</span><span>Customer Service</span></div>
         </div>
         <div class="exp-panel" id="exp-3">
           <h3>Treasurer &amp; Teaching Assistant <span class="exp-at">@ MLIS Robotics Club</span></h3>
           <div class="exp-when">AUG 2022 — JUL 2023</div>
+          <p class="exp-summary">Ran the club's finances while teaching, running events and starting a small venture to fund club operations.</p>
           <ul>
-            <li>Coached 100+ students through a year-long Arduino robotics course, expanding technology access in the local community</li>
-            <li>Spearheaded a Corsair-sponsored PC-building workshop for 300+ students, growing club visibility and tech engagement</li>
-            <li>Identified student demand for robotics parts and launched a club store, generating first-ever profits of $2,000 to fund club operations</li>
+            <li><strong>Robotics course</strong> — taught a year-long Arduino IDE course to 100+ students, free of charge, to make technical resources more accessible in the community</li>
+            <li><strong>PC-building workshop</strong> — organized a Corsair-sponsored workshop for 300+ students, growing club visibility and tech engagement</li>
+            <li><strong>Robotics Techkits</strong> — spotted student demand for robotics parts and launched a club store, generating the club's first-ever profit of $2,000 to fund operations</li>
           </ul>
+          <div class="proj-stack exp-stack"><span>Teaching</span><span>Arduino</span><span>Event Organizing</span><span>Finance</span></div>
         </div>
       </div>
     </div>
@@ -231,7 +242,28 @@
       <h2><span class="idx">/</span> software</h2>
     </div>
 
-    <div class="proj-grid">
+    <div class="carousel" data-carousel style="--per:1">
+      <div class="car-track">
+      <article class="proj-card">
+        <div class="proj-media">
+          <img src="assets/img/software/dosecontrol.jpg" style="object-position: left top" alt="DoseControl prototype ward board showing patients on vancomycin">
+        </div>
+        <div class="proj-body">
+          <div class="proj-year">2026</div>
+          <div class="proj-top">
+            <h3>DoseControl</h3>
+            <span class="badge">BioInnovate UBC Pitch Competition — Fall 2026</span>
+          </div>
+          <p>Dosing software for vancomycin, the most-used hospital antibiotic. It turns live drug readings from a microneedle skin patch into a recommended next dose, and a clinician approves every change. In a simulation of 2,000 virtual patients whose kidney function changed mid-treatment, patch-guided dosing kept 74% of patients in the target range on days 2–4, against 58% for today's best practice, with no blood draws for drug levels.</p>
+          <p>The working prototype runs a simulated 8-patient ward in real time, with dose recommendations and plain-language reasons, an approve/decline flow, and forecast charts. It pauses suggestions when the patch signal is weak instead of dosing on bad data.</p>
+          <div class="proj-stack"><span>Python</span><span>Pharmacokinetic Modelling</span><span>JavaScript</span><span>HTML/CSS</span></div>
+          <div class="proj-actions">
+            <a href="https://derpido.github.io/dosecontrol/" target="_blank" rel="noopener" class="proj-link proj-link-strong">Launch Prototype ↗</a>
+          </div>
+        </div>
+          <button class="contrib-btn" aria-label="Show contributors for DoseControl" data-project="DoseControl" data-names="Sameen, Moosa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6"/></svg></button>
+      </article>
+
 
       <article class="proj-card">
         <div class="proj-media">
@@ -273,6 +305,10 @@
       </article>
 
 
+      </div>
+      <button class="car-btn car-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="car-btn car-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="car-dots"></div>
     </div>
   </section>
 
@@ -283,7 +319,8 @@
       <h2><span class="idx">/</span> hardware</h2>
     </div>
 
-    <div class="proj-grid proj-grid-3">
+    <div class="carousel carousel-cards" data-carousel style="--per:3">
+      <div class="car-track">
 
       <article class="proj-card">
         <div class="proj-media"><img src="assets/img/hardware/agrobot.png" alt="UBC Agrobot CAD render"></div>
@@ -407,25 +444,6 @@
       </article>
 
       <article class="proj-card">
-        <div class="proj-media"><img src="assets/img/hardware/alphabot.jpg" alt="Alphabot code preview"></div>
-        <div class="proj-body">
-          <div class="proj-year">2023</div>
-          <h3>AlphaBot</h3>
-          <p>
-            A compact Arduino-driven robot running off a 9V supply, combining infrared line
-            tracking with ultrasonic obstacle detection and a Bluetooth module for wireless
-            control — so it can either follow a track on its own, steer clear of obstacles, or
-            be driven manually.
-          </p>
-          <div class="proj-stack"><span>Arduino</span><span>Infrared</span><span>Ultrasonic</span><span>Bluetooth</span><span>9V Supply</span></div>
-          <div class="proj-actions">
-            <a href="https://github.com/Derpido/derpido.github.io/blob/main/assets/code/Ultrasionc-Obstacle-Avoidance.ino" target="_blank" rel="noopener" class="proj-link">Obstacle Avoidance Code ↗</a>
-            <a href="https://github.com/Derpido/derpido.github.io/blob/main/assets/code/Infrared-Line-Tracking.ino" target="_blank" rel="noopener" class="proj-link">Line Tracking Code ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="proj-card">
         <div class="proj-media"><img src="assets/img/hardware/mars2.jpg" alt="Mars 2.0 robot"></div>
         <div class="proj-body">
           <div class="proj-year">2021</div>
@@ -445,48 +463,16 @@
       </article>
 
 
+      </div>
+      <button class="car-btn car-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="car-btn car-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="car-dots"></div>
     </div>
 
     <div class="inprogress">
       <span class="inprogress-label">In progress</span>
       <span class="inprogress-item">Soccer Bot</span>
       <span class="inprogress-item">Voice Assistant</span>
-    </div>
-  </section>
-
-  <!-- ===== CAD ===== -->
-  <section id="cad" class="section">
-    <div class="section-head">
-      <span class="node"></span>
-      <h2><span class="idx">/</span> <span class="nocap">CAD</span></h2>
-    </div>
-
-    <div class="proj-grid">
-
-      <article class="proj-card featured">
-        <div class="proj-media">
-          <img src="assets/img/cad/assistive-device.jpg" alt="PageFlip assistive device poster">
-        </div>
-        <div class="proj-body">
-          <div class="proj-year">2025</div>
-          <div class="proj-top">
-            <h3>PageFlip — Assistive Device</h3>
-          </div>
-          <p>
-            A hand-fitted, 3D-printable page-turning aid for people with limited hand and
-            finger mobility. $20 to print, 51g, and works by friction alone — no motors
-            or electronics required.
-          </p>
-          <div class="proj-stack"><span>Fusion 360</span><span>3D Printing</span></div>
-          <div class="proj-actions">
-            <a href="logs/pageflip.html" class="proj-link">Full project log &rarr;</a>
-            <a href="assets/docs/pageflip-promo-sheet.pdf" target="_blank" class="proj-link">View Poster ↗</a>
-          </div>
-        </div>
-          <button class="contrib-btn" aria-label="Show contributors for PageFlip" data-project="PageFlip" data-names="Sameen, Krypton, Kourosh, Ryan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6"/></svg></button>
-      </article>
-
-
     </div>
   </section>
 
@@ -537,7 +523,8 @@
       <p class="section-sub">Student-directed studies and written research</p>
     </div>
 
-    <div class="research-list">
+    <div class="carousel carousel-cards" data-carousel style="--per:2">
+      <div class="car-track">
 
       <article class="research-item">
         <div class="research-meta">
@@ -595,6 +582,10 @@
         <a href="assets/docs/research-cost-of-raising-a-child.pdf" target="_blank" class="proj-link">Read Paper ↗</a>
       </article>
 
+      </div>
+      <button class="car-btn car-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="car-btn car-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="car-dots"></div>
     </div>
   </section>
 
@@ -606,9 +597,10 @@
       <p class="section-sub">A collection of my acrylic and digital work</p>
     </div>
 
-    <div class="art-grid">
+    <div class="carousel carousel-cards art-carousel" data-carousel style="--per:3">
+      <div class="car-track">
       <figure class="art-piece">
-        <img src="assets/img/art/random-attempt.jpg" alt="1st random attempt" loading="lazy">
+        <a href="assets/img/art/random-attempt.jpg" target="_blank" rel="noopener" class="art-link"><img src="assets/img/art/random-attempt.jpg" alt="1st random attempt" loading="lazy"></a>
         <figcaption>
           <span class="art-title">1st Random Attempt</span>
           <span class="art-medium">Acrylic</span>
@@ -616,7 +608,7 @@
       </figure>
 
       <figure class="art-piece">
-        <img src="assets/img/art/fireflies.jpg" alt="Fireflies, a rare sight" loading="lazy">
+        <a href="assets/img/art/fireflies.jpg" target="_blank" rel="noopener" class="art-link"><img src="assets/img/art/fireflies.jpg" alt="Fireflies, a rare sight" loading="lazy"></a>
         <figcaption>
           <span class="art-title">Fireflies, a Rare Sight</span>
           <span class="art-medium">Acrylic</span>
@@ -624,7 +616,7 @@
       </figure>
 
       <figure class="art-piece">
-        <img src="assets/img/art/dead-cat.jpg" alt="A dead cat's day out" loading="lazy">
+        <a href="assets/img/art/dead-cat.jpg" target="_blank" rel="noopener" class="art-link"><img src="assets/img/art/dead-cat.jpg" alt="A dead cat's day out" loading="lazy"></a>
         <figcaption>
           <span class="art-title">A Dead Cat's Day Out</span>
           <span class="art-medium">Digital</span>
@@ -632,12 +624,16 @@
       </figure>
 
       <figure class="art-piece">
-        <img src="assets/img/art/lalbagh-fort.jpg" alt="Lalbagh Fort" loading="lazy">
+        <a href="assets/img/art/lalbagh-fort.jpg" target="_blank" rel="noopener" class="art-link"><img src="assets/img/art/lalbagh-fort.jpg" alt="Lalbagh Fort" loading="lazy"></a>
         <figcaption>
           <span class="art-title">Lalbagh Fort</span>
           <span class="art-medium">Digital</span>
         </figcaption>
       </figure>
+      </div>
+      <button class="car-btn car-prev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="car-btn car-next" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="car-dots"></div>
     </div>
   </section>
 

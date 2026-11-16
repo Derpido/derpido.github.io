@@ -196,3 +196,82 @@ if (!reduceMotion && "IntersectionObserver" in window){
     if (e.key === "Escape" && overlay.classList.contains("open")) close();
   });
 })();
+
+// =========================================================
+// Carousels: arrows + dots, one "page" at a time
+// =========================================================
+document.querySelectorAll("[data-carousel]").forEach(car => {
+  const track = car.querySelector(".car-track");
+  const prev  = car.querySelector(".car-prev");
+  const next  = car.querySelector(".car-next");
+  const dotsEl = car.querySelector(".car-dots");
+  if (!track) return;
+
+  const items = () => Array.from(track.children);
+
+  // how many cards are visible at once (from CSS --p)
+  function perView(){
+    const first = items()[0];
+    if (!first) return 1;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return Math.max(1, Math.round((track.clientWidth + gap) / (first.offsetWidth + gap)));
+  }
+  function pageCount(){ return Math.max(1, Math.ceil(items().length / perView())); }
+  function currentPage(){
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 1) return 0;
+    if (track.scrollLeft >= maxScroll - 2) return pageCount() - 1;
+    const step = items()[1] ? items()[1].offsetLeft - items()[0].offsetLeft : track.clientWidth;
+    return Math.round(track.scrollLeft / (step * perView()));
+  }
+  function goTo(page){
+    const per = perView();
+    const idx = Math.min(items().length - 1, Math.max(0, page * per));
+    const target = items()[idx];
+    if (target) track.scrollTo({ left: target.offsetLeft - items()[0].offsetLeft });
+  }
+
+  function buildDots(){
+    if (!dotsEl) return;
+    dotsEl.innerHTML = "";
+    const n = pageCount();
+    for (let i = 0; i < n; i++){
+      const d = document.createElement("button");
+      d.className = "car-dot";
+      d.setAttribute("aria-label", "Go to slide " + (i + 1) + " of " + n);
+      d.addEventListener("click", () => goTo(i));
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function update(){
+    const n = pageCount(), cur = currentPage();
+    car.classList.toggle("no-scroll", n <= 1);
+    if (prev) prev.disabled = cur <= 0;
+    if (next) next.disabled = cur >= n - 1;
+    if (dotsEl){
+      if (dotsEl.children.length !== n) buildDots();
+      Array.from(dotsEl.children).forEach((d, i) => d.classList.toggle("active", i === cur));
+    }
+  }
+
+  prev && prev.addEventListener("click", () => goTo(currentPage() - 1));
+  next && next.addEventListener("click", () => goTo(currentPage() + 1));
+
+  // left/right arrow keys while focus is inside the carousel
+  car.addEventListener("keydown", e => {
+    if (e.target.closest("input, textarea")) return;
+    if (e.key === "ArrowRight"){ e.preventDefault(); goTo(currentPage() + 1); }
+    if (e.key === "ArrowLeft"){  e.preventDefault(); goTo(currentPage() - 1); }
+  });
+
+  let raf = null;
+  track.addEventListener("scroll", () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => { raf = null; update(); });
+  }, { passive: true });
+  window.addEventListener("resize", () => { buildDots(); update(); });
+
+  buildDots();
+  update();
+});
