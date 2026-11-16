@@ -598,3 +598,11 @@ img{ max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce){
   .car-track{ scroll-behavior: auto; }
 }
+
+/* education: university name and expected grad share the top row */
+.edu-main{ flex: 1; min-width: 0; }
+.edu-head{ display: flex; justify-content: space-between; align-items: baseline; gap: 8px 24px; flex-wrap: wrap; margin-bottom: 5px; }
+.edu-head h3{ margin-bottom: 0; }
+.edu-grad{ display: flex; align-items: baseline; gap: 8px; font-size: 13px; color: var(--silk); white-space: nowrap; }
+.edu-grad .edu-key{ display: inline; margin: 0; }
+.edu-tags{ display: flex; flex-wrap: wrap; gap: 8px; }
